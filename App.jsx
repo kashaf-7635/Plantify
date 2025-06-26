@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Colors from './src/utils/colors';
 import Philosopher from './src/components/Styled/TextCmp/Philosopher';
 import AddProduct from './src/screens/AddProduct';
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +52,7 @@ function App() {
           <Stack.Screen name="Product" component={Product} />
         </Stack.Navigator>
       </NavigationContainer>
+      <Toast />
     </>
   );
 }

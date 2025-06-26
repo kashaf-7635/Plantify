@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useAddProductMutation, useProductsQuery } from '../../services/api';
 import ProductCard from '../../components/ProductCard';
 import FontAwesome from '@react-native-vector-icons/fontawesome';
@@ -14,10 +14,19 @@ import Colors from '../../utils/colors';
 import Loading from '../../components/Loading';
 import Poppins from '../../components/Styled/TextCmp/Poppins';
 import Error from '../../components/Error';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts, STATUSES } from '../../store/productSlice';
 
 const Home = ({ navigation }) => {
   const { data, error, isLoading, isFetching, isSuccess } = useProductsQuery();
- useLayoutEffect(() => {
+  const dispatch = useDispatch();
+  // const { data, status, error } = useSelector(state => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
@@ -28,22 +37,32 @@ const Home = ({ navigation }) => {
       },
     });
   }, []);
+
   if (error) {
     console.log(error);
 
     return <Error message={error?.message} />;
   }
 
-  if (isFetching || isLoading) {
+  if (
+    isFetching ||
+    isLoading
+    // status === STATUSES.LOADING
+  ) {
     return <Loading />;
   }
-  if (isSuccess && data?.products.length === 0) {
+  if (
+    isSuccess &&
+    // status === STATUSES.SUCCESS
+    data?.products.length === 0
+  ) {
     return <Error message={'No Data Found'} />;
   }
 
   return (
     <View style={s.container}>
       {isSuccess && (
+        // status === STATUSES.SUCCESS
         <FlatList
           showsVerticalScrollIndicator={false}
           data={data?.products}
