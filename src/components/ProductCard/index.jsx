@@ -65,13 +65,22 @@ export default ProductCard;
 
 const s = StyleSheet.create({
   main: {
+    alignSelf:'center',
     padding: horizontalScale(15),
-    width: '100%',
-    backgroundColor: Colors.bgPrimary,
+    backgroundColor: Colors.bg,
     borderRadius: moderateScale(20),
     marginVertical: verticalScale(10),
     height: verticalScale(177),
     width: horizontalScale(280),
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   titleContainer: {
     flex: 1,

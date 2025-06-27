@@ -10,14 +10,17 @@ import React, { useState } from 'react';
 import {
   useAddProductMutation,
   useUpdateProductMutation,
-} from '../../services/api';
-import ButtonCmp from '../../components/ButtonCmp';
+} from '../../../services/api';
 import Toast from 'react-native-toast-message';
-import InputCmp from '../../components/InputCmp';
-import DropdownCmp from '../../components/DropdownCmp';
+import InputCmp from '../../../components/InputCmp';
+import DropdownCmp from '../../../components/DropdownCmp';
 import { Formik } from 'formik';
 import { launchImageLibrary } from 'react-native-image-picker';
-import ImageCmp from '../../components/Styled/ImageCmp';
+import ImageCmp from '../../../components/Styled/ImageCmp';
+import ButtonCmp from '../../../components/Buttons/ButtonCmp';
+import AdminHeader from '../../../components/Header/AdminHeader';
+import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
+import { horizontalScale, verticalScale } from '../../../utils/scaling';
 
 const AddProduct = ({ navigation, route }) => {
   const [addProduct, { isLoading, isFetching }] = useAddProductMutation();
@@ -160,94 +163,112 @@ const AddProduct = ({ navigation, route }) => {
   };
 
   return (
-    <Formik
-      initialValues={{
-        name: editData?.name || '',
-        price: editData?.price?.toString() || '',
-        size: editData?.size || '',
-        category: editData?.category || '',
-        bio: editData?.bio || '',
-        image: editData?.image || '',
-      }}
-      onSubmit={editData ? handleUpdate : handleAdd}
-    >
-      {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
-        <ScrollView style={{ flex: 1 }}>
-          <View style={s.container}>
-            <InputCmp
-              label="Name"
-              value={values.name}
-              onChangeText={handleChange('name')}
-              placeholder="Enter plant name..."
-            />
-
-            <TouchableOpacity
-              onPress={() => pickImage(setFieldValue)}
-              style={{ width: '100%' }}
-            >
-              {uploading ? (
-                <ActivityIndicator />
-              ) : (
+    <>
+      <SafeAreaWrapper>
+        <AdminHeader />
+        <Formik
+          initialValues={{
+            name: editData?.name || '',
+            price: editData?.price?.toString() || '',
+            size: editData?.size || '',
+            category: editData?.category || '',
+            bio: editData?.bio || '',
+            image: editData?.image || '',
+          }}
+          onSubmit={editData ? handleUpdate : handleAdd}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            setFieldValue,
+          }) => (
+            <ScrollView contentContainerStyle={s.scrollContent}>
+              <View style={s.container}>
                 <InputCmp
-                  label="Pick Image"
-                  value={values.image}
-                  onChangeText={handleChange('image')}
-                  placeholder="Click here"
-                  editable={false}
+                  label="Name"
+                  value={values.name}
+                  onChangeText={handleChange('name')}
+                  placeholder="Enter plant name..."
                 />
-              )}
-            </TouchableOpacity>
 
-            {values.image && <ImageCmp source={values.image} width={100} />}
+                <TouchableOpacity
+                  onPress={() => pickImage(setFieldValue)}
+                  style={{ width: '100%' }}
+                >
+                  {uploading ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <InputCmp
+                      label="Pick Image"
+                      value={values.image}
+                      onChangeText={handleChange('image')}
+                      placeholder="Click here"
+                      editable={false}
+                    />
+                  )}
+                </TouchableOpacity>
 
-            <InputCmp
-              label="Price"
-              value={values.price}
-              onChangeText={handleChange('price')}
-              placeholder="Enter plant price..."
-              keyboardType="numeric"
-            />
+                {values.image && <ImageCmp source={values.image} width={100} />}
 
-            <DropdownCmp
-              label="Size"
-              value={values.size}
-              setValue={val => setFieldValue('size', val)}
-              items={sizes}
-            />
-            <DropdownCmp
-              label="Category"
-              value={values.category}
-              setValue={val => setFieldValue('category', val)}
-              items={categories}
-            />
-            <InputCmp
-              label="Bio"
-              value={values.bio}
-              onChangeText={handleChange('bio')}
-              placeholder="Enter plant bio..."
-              multiline={true}
-            />
+                <InputCmp
+                  label="Price"
+                  value={values.price}
+                  onChangeText={handleChange('price')}
+                  placeholder="Enter plant price..."
+                  keyboardType="numeric"
+                />
+                <InputCmp
+                  label="Bio"
+                  value={values.bio}
+                  onChangeText={handleChange('bio')}
+                  placeholder="Enter plant bio..."
+                  multiline={true}
+                />
 
-            <ButtonCmp
-              isLoading={
-                isLoading || isFetching || updateLoading || updateFetching
-              }
-              onPress={handleSubmit}
-            >
-              {editData ? 'Update' : 'Add'}
-            </ButtonCmp>
-          </View>
-        </ScrollView>
-      )}
-    </Formik>
+                <DropdownCmp
+                  label="Size"
+                  value={values.size}
+                  setValue={val => setFieldValue('size', val)}
+                  items={sizes}
+                />
+                <DropdownCmp
+                  label="Category"
+                  value={values.category}
+                  setValue={val => setFieldValue('category', val)}
+                  items={categories}
+                />
+
+                <ButtonCmp
+                  variant={'filled'}
+                  isLoading={
+                    isLoading || isFetching || updateLoading || updateFetching
+                  }
+                  onPress={handleSubmit}
+                >
+                  {editData ? 'Update' : 'Add'}
+                </ButtonCmp>
+              </View>
+            </ScrollView>
+          )}
+        </Formik>
+      </SafeAreaWrapper>
+    </>
   );
 };
 
 export default AddProduct;
 
 const s = StyleSheet.create({
-  container: {
+  scrollContent: {
     flexGrow: 1,
+    paddingHorizontal: horizontalScale(20),
+    paddingBottom: verticalScale(30),
+  },
+  container: {
+    flex: 1,
+    width: '100%',
     alignItems: 'center',
   },
 });

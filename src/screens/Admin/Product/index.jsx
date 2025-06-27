@@ -4,19 +4,22 @@ import {
   useDeleteProductMutation,
   useProductQuery,
   useUpdateProductMutation,
-} from '../../services/api';
-import ImageCmp from '../../components/Styled/ImageCmp';
-import Poppins from '../../components/Styled/TextCmp/Poppins';
-import Philosopher from '../../components/Styled/TextCmp/Philosopher';
+} from '../../../services/api';
+import ImageCmp from '../../../components/Styled/ImageCmp';
+import Poppins from '../../../components/Styled/TextCmp/Poppins';
+import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import {
   horizontalScale,
   moderateScale,
   verticalScale,
-} from '../../utils/scaling';
-import Loading from '../../components/Loading';
-import Error from '../../components/Error';
-import ButtonCmp from '../../components/ButtonCmp';
+} from '../../../utils/scaling';
+import Loading from '../../../components/Loading';
+import Error from '../../../components/Error';
 import Toast from 'react-native-toast-message';
+import ButtomCmp from '../../../components/Buttons/ButtonCmp';
+import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
+import AdminHeader from '../../../components/Header/AdminHeader';
+import Colors from '../../../utils/colors';
 
 const Product = ({ route, navigation }) => {
   const productId = route?.params?.productId;
@@ -71,7 +74,8 @@ const Product = ({ route, navigation }) => {
   return (
     <>
       {isSuccess && (
-        <View style={s.container}>
+        <SafeAreaWrapper>
+          <AdminHeader title={data?.product.name} />
           <ImageCmp source={data?.product?.image} height={231} width={375} />
           <View style={s.details}>
             <Poppins size={16} weight="bold">
@@ -109,16 +113,20 @@ const Product = ({ route, navigation }) => {
                 </Poppins>
               </View>
             </View>
-
-            <ButtonCmp onPress={handleEdit}>Edit</ButtonCmp>
-            <ButtonCmp
-              onPress={handleDelete}
-              isLoading={deleteLoading || deleteFetching}
-            >
-              Delete
-            </ButtonCmp>
+            <View style={{ alignItems: 'center' }}>
+              <ButtomCmp variant={'filled'} onPress={handleEdit}>
+                Edit
+              </ButtomCmp>
+              <ButtomCmp
+                variant={'filled'}
+                onPress={handleDelete}
+                isLoading={deleteLoading || deleteFetching}
+              >
+                Delete
+              </ButtomCmp>
+            </View>
           </View>
-        </View>
+        </SafeAreaWrapper>
       )}
     </>
   );
@@ -127,10 +135,8 @@ const Product = ({ route, navigation }) => {
 export default Product;
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   details: {
+    backgroundColor: Colors.bg,
     padding: moderateScale(20),
     gap: verticalScale(10),
   },

@@ -1,0 +1,60 @@
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React from 'react';
+import Poppins from '../../Styled/TextCmp/Poppins';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '../../../utils/scaling';
+import Colors from '../../../utils/colors';
+
+const ButtonCmp = ({ children, isLoading, onPress, variant }) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        s.btn,
+        variant === 'outlined'
+          ? {
+              borderColor: Colors.primary800,
+              borderWidth: 2,
+            }
+          : variant === 'filled'
+          ? {
+              backgroundColor: Colors.primary800,
+            }
+          : {},
+      ]}
+    >
+      {isLoading ? (
+        <ActivityIndicator color="#FFF" />
+      ) : (
+        <Poppins
+          size={18}
+          color={variant !== 'filled' ? Colors.primary800 : '#FFF'}
+        >
+          {children}
+        </Poppins>
+      )}
+    </TouchableOpacity>
+  );
+};
+
+export default ButtonCmp;
+
+const s = StyleSheet.create({
+  btn: {
+    height: verticalScale(50),
+    width: horizontalScale(279),
+    borderRadius: moderateScale(8),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: verticalScale(10),
+  },
+});

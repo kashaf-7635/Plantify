@@ -1,5 +1,5 @@
 const Colors = {
-  textPrimary: '#002140',
-  bgPrimary: '#9CE5CB',
+  primary800: '#009245',
+  bg:'#F6F6F6',
 };
 export default Colors;

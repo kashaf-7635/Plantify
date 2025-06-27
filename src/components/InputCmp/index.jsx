@@ -45,18 +45,26 @@ export default InputCmp;
 
 const s = StyleSheet.create({
   container: {
-    width: '90%',
     alignSelf: 'center',
     marginVertical: verticalScale(10),
+    width:'100%'
   },
   input: {
-    borderWidth: 2,
-    borderColor: Colors.textPrimary,
     borderRadius: horizontalScale(10),
     paddingHorizontal: horizontalScale(12),
     paddingVertical: verticalScale(12),
     fontSize: verticalScale(14),
-    color: Colors.textPrimary,
-    backgroundColor: Colors.bgPrimary,
+    color: Colors.primary800,
+    backgroundColor: Colors.bg,
+    shadowColor: '#000',
+    width: '100%',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 2,
   },
 });

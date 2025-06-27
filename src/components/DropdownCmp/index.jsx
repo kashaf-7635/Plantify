@@ -34,15 +34,23 @@ export default DropdownCmp;
 
 const s = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     alignSelf: 'center',
     marginVertical: verticalScale(10),
+     shadowColor: '#000',
+
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 2,
   },
   input: {
-    borderWidth: 2,
-    borderColor: Colors.textPrimary,
     borderRadius: horizontalScale(10),
     paddingHorizontal: horizontalScale(12),
-    backgroundColor: Colors.bgPrimary,
+    backgroundColor: Colors.bg,
   },
 });

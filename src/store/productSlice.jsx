@@ -1,15 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
+import { productsApi } from '../services/api';
 
-export const fetchProducts = createAsyncThunk(
-  'product/fetchproducts',
-  async () => {
-    const response = await axios.get(`http://109.1.1.67:5000/api/products`);
-    console.log(response.data);
-
-    return response.data;
-  },
-);
 export const STATUSES = {
   LOADING: 'loading',
   SUCCESS: 'succeeded',
@@ -26,18 +17,22 @@ const productSlice = createSlice({
   reducers: {},
 
   extraReducers: builder => {
-    builder
-      .addCase(fetchProducts.pending, state => {
-        state.status = STATUSES.LOADING;
-      })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+    builder.addMatcher(
+      productsApi.endpoints.products.matchFulfilled,
+      (state, { payload }) => {
         state.status = STATUSES.SUCCESS;
-        state.data = action.payload;
-      })
-      .addCase(fetchProducts.rejected, (state, action) => {
+        state.data = payload?.products;
+      },
+      productsApi.endpoints.products.matchPending,
+      (state, { payload }) => {
+        state.status = STATUSES.LOADING;
+      },
+      productsApi.endpoints.products.matchRejected,
+      (state, { payload }) => {
         state.status = STATUSES.ERROR;
-        state.error = action.error.message;
-      });
+        state.error = payload.error.message;
+      },
+    );
   },
 });
 
