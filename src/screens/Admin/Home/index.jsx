@@ -7,18 +7,19 @@ import {
   View,
 } from 'react-native';
 import React, { useLayoutEffect } from 'react';
-import { useProductsQuery } from '../../../services/api';
+import { useProductsQuery } from '../../../services/productsApi';
 import ProductCard from '../../../components/ProductCard';
 import FontAwesome from '@react-native-vector-icons/fontawesome';
 import Colors from '../../../utils/colors';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import { useSelector } from 'react-redux';
-import { STATUSES } from '../../../store/productSlice';
+
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import { horizontalScale, verticalScale } from '../../../utils/scaling';
 import AdminHeader from '../../../components/Header/AdminHeader';
+import { STATUSES } from '../../../store/statuses';
 
 const Home = ({ navigation }) => {
   const {} = useProductsQuery();

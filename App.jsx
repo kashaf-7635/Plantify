@@ -6,7 +6,6 @@
  */
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Toast from 'react-native-toast-message';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AuthStack from './src/navigation/AuthStack';
@@ -16,17 +15,17 @@ import AdminStack from './src/navigation/AdminStack';
 
 function App() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-  const role = useSelector(state => state.auth.role);
+  const user = useSelector(state => state.auth.user);
 
   let currentStack;
 
   if (!isAuthenticated) {
     currentStack = <AuthStack />;
   } else {
-    if (role === 'user') {
+    if (user.role === 'user') {
       currentStack = <UserStack />;
     }
-    if (role === 'admin') {
+    if (user.role === 'admin') {
       currentStack = <AdminStack />;
     }
   }

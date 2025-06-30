@@ -9,10 +9,9 @@ const SafeAreaWrapper = ({ children }) => {
     <View
       style={{
         flex: 1,
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
+        paddingTop: verticalScale(insets.top),
+        paddingLeft: horizontalScale(insets.left),
+        paddingRight: horizontalScale(insets.right),
         backgroundColor: '#FFF',
       }}
     >

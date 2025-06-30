@@ -1,17 +1,14 @@
-import { Image, ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { authenticate } from '../../../store/authSlice';
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
 import { moderateScale, verticalScale } from '../../../utils/scaling';
 
-const GetStarted = () => {
-  const dispatch = useDispatch();
-  const login = role => {
-    dispatch(authenticate({ role }));
+const GetStarted = ({ navigation }) => {
+  const handleLoginClick = () => {
+    navigation.navigate('Signup');
   };
   return (
     <>
@@ -29,11 +26,8 @@ const GetStarted = () => {
             our exceptional plant selection
           </Poppins>
 
-          <ButtonCmp onPress={() => login('user')} variant="filled">
-            User Login
-          </ButtonCmp>
-          <ButtonCmp onPress={() => login('admin')} variant="filled">
-            Admin Login
+          <ButtonCmp onPress={handleLoginClick} variant="filled">
+            Login / Signup
           </ButtonCmp>
         </View>
       </SafeAreaWrapper>
@@ -50,7 +44,7 @@ const s = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: moderateScale(20),
-    paddingBottom: verticalScale(40),
+    paddingBottom: verticalScale(60),
     zIndex: 1,
   },
 });

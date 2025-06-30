@@ -4,7 +4,7 @@ import {
   useDeleteProductMutation,
   useProductQuery,
   useUpdateProductMutation,
-} from '../../../services/api';
+} from '../../../services/productsApi';
 import ImageCmp from '../../../components/Styled/ImageCmp';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';

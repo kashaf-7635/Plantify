@@ -3,6 +3,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Colors from '../utils/colors';
 import GetStarted from '../screens/Auth/GetStarted';
+import Signup from '../screens/Auth/Signup';
+import Login from '../screens/Auth/Login';
 const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {
@@ -13,6 +15,8 @@ const AuthStack = () => {
       })}
     >
       <Stack.Screen name="GetStarted" component={GetStarted} options={{}} />
+      <Stack.Screen name="Signup" component={Signup} options={{}} />
+      <Stack.Screen name="Login" component={Login} options={{}} />
     </Stack.Navigator>
   );
 };

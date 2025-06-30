@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { productsApi } from '../services/api';
+import { productsApi } from '../services/productsApi';
+import { STATUSES } from './statuses';
 
-export const STATUSES = {
-  LOADING: 'loading',
-  SUCCESS: 'succeeded',
-  ERROR: 'failed',
-};
 
 const productSlice = createSlice({
   name: 'product',

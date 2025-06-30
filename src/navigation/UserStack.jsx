@@ -1,23 +1,27 @@
 import { StyleSheet } from 'react-native';
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Colors from '../utils/colors';
-import Home from '../screens/Admin/Home';
-import AddProduct from '../screens/Admin/AddProduct';
-import Product from '../screens/Admin/Product';
-import Philosopher from '../components/Styled/TextCmp/Philosopher';
 import HomeScreen from '../screens/User/Home';
-const Stack = createNativeStackNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SearchScreen from '../screens/User/Search';
+import NotificationScreen from '../screens/User/Notification';
+import ProfileScreen from '../screens/User/Profile';
+import UserTabBar from '../components/UserTabBar';
+
+const Tab = createBottomTabNavigator();
 
 const UserStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={({ route }) => ({
+    <Tab.Navigator
+      tabBar={props => <UserTabBar {...props} />}
+      screenOptions={{
         headerShown: false,
-      })}
+      }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} options={{}} />
-    </Stack.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Notification" component={NotificationScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
   );
 };
 

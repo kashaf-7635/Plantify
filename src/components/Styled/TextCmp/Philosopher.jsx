@@ -7,7 +7,7 @@ const Philosopher = ({
   children,
   weight = 'regular',
   size = 14,
-  color = Colors.primary800,
+  color = Colors.textDark,
   align = 'left',
   opacity = 1,
   animated = false,

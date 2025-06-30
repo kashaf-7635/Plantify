@@ -47,7 +47,7 @@ const s = StyleSheet.create({
   container: {
     alignSelf: 'center',
     marginVertical: verticalScale(10),
-    width:'100%'
+    width: '100%',
   },
   input: {
     borderRadius: horizontalScale(10),

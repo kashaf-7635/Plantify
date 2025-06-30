@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import {
   useAddProductMutation,
   useUpdateProductMutation,
-} from '../../../services/api';
+} from '../../../services/productsApi';
 import Toast from 'react-native-toast-message';
 import InputCmp from '../../../components/InputCmp';
 import DropdownCmp from '../../../components/DropdownCmp';

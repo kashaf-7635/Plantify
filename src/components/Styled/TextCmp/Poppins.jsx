@@ -7,7 +7,7 @@ const Poppins = ({
   children,
   weight = 'regular',
   size = 14,
-  color = Colors.textPrimary,
+  color = Colors.textDark,
   align = 'left',
   opacity = 1,
   animated = false,
