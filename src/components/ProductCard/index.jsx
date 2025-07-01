@@ -1,11 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import FontAwesome from '@react-native-vector-icons/fontawesome';
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import Colors from '../../utils/colors';
 import ImageCmp from '../Styled/ImageCmp';
 import Poppins from '../Styled/TextCmp/Poppins';
@@ -38,11 +34,15 @@ const ProductCard = ({ product }) => {
         </Poppins>
 
         <View style={[s.row, s.actions]}>
-          <FontAwesome name="heart" color={Colors.textPrimary} size={30} />
+          <FontAwesome
+            name="heart"
+            color={Colors.textPrimary}
+            size={moderateScale(30)}
+          />
           <FontAwesome
             name="shopping-bag"
             color={Colors.textPrimary}
-            size={30}
+            size={moderateScale(30)}
           />
           <TouchableOpacity
             onPress={() =>
@@ -52,7 +52,7 @@ const ProductCard = ({ product }) => {
             <FontAwesome
               name="arrow-right"
               color={Colors.textPrimary}
-              size={30}
+              size={moderateScale(30)}
             />
           </TouchableOpacity>
         </View>
@@ -65,13 +65,13 @@ export default ProductCard;
 
 const s = StyleSheet.create({
   main: {
-    alignSelf:'center',
-    padding: horizontalScale(15),
+    alignSelf: 'center',
+    padding: scale(15),
     backgroundColor: Colors.bg,
     borderRadius: moderateScale(20),
     marginVertical: verticalScale(10),
     height: verticalScale(177),
-    width: horizontalScale(280),
+    width: scale(280),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -93,6 +93,6 @@ const s = StyleSheet.create({
   actions: {
     flex: 1,
     justifyContent: 'flex-end',
-    gap: horizontalScale(10),
+    gap: scale(10),
   },
 });

@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
-import { horizontalScale, verticalScale } from '../../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../../utils/scaling';
 import AdminHeader from '../../../components/Header/AdminHeader';
 import { STATUSES } from '../../../store/statuses';
 
@@ -34,7 +34,11 @@ const Home = ({ navigation }) => {
       headerRight: () => {
         return (
           <TouchableOpacity onPress={() => navigation.navigate('AddProduct')}>
-            <FontAwesome name="plus" color={Colors.textPrimary} size={30} />
+            <FontAwesome
+              name="plus"
+              color={Colors.textPrimary}
+              size={moderateScale(30)}
+            />
           </TouchableOpacity>
         );
       },

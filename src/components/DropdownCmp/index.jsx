@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import Poppins from '../Styled/TextCmp/Poppins';
 import Colors from '../../utils/colors';
-import { horizontalScale, verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import { Picker } from '@react-native-picker/picker';
 
 const DropdownCmp = ({ label, value, setValue, items }) => {
@@ -49,8 +49,8 @@ const s = StyleSheet.create({
     elevation: 2,
   },
   input: {
-    borderRadius: horizontalScale(10),
-    paddingHorizontal: horizontalScale(12),
+    borderRadius: scale(10),
+    paddingHorizontal: scale(12),
     backgroundColor: Colors.bg,
   },
 });

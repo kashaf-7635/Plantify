@@ -20,7 +20,7 @@ import ImageCmp from '../../../components/Styled/ImageCmp';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
 import AdminHeader from '../../../components/Header/AdminHeader';
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
-import { horizontalScale, verticalScale } from '../../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../../utils/scaling';
 
 const AddProduct = ({ navigation, route }) => {
   const [addProduct, { isLoading, isFetching }] = useAddProductMutation();
@@ -263,7 +263,7 @@ export default AddProduct;
 const s = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: horizontalScale(20),
+    paddingHorizontal: scale(20),
     paddingBottom: verticalScale(30),
   },
   container: {

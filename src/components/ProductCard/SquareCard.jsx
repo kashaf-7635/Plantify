@@ -1,22 +1,27 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import Poppins from '../Styled/TextCmp/Poppins';
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import Colors from '../../utils/colors';
+import { useNavigation } from '@react-navigation/native';
 
 const SquareCard = ({ product }) => {
+  const navigation = useNavigation();
   return (
-    <View style={s.card}>
+    <TouchableOpacity
+      style={s.card}
+      onPress={() =>
+        navigation.navigate('ProductDetails', {
+          productId: product._id,
+        })
+      }
+    >
       <View style={s.imageContainer}>
         <Image style={s.image} source={{ uri: product?.image }} />
       </View>
       <View
         style={{
-          paddingHorizontal: horizontalScale(5),
+          paddingHorizontal: scale(5),
           paddingVertical: verticalScale(10),
         }}
       >
@@ -28,7 +33,7 @@ const SquareCard = ({ product }) => {
           $ {product?.price}
         </Poppins>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -36,11 +41,11 @@ export default SquareCard;
 
 const s = StyleSheet.create({
   card: {
-    width: horizontalScale(155),
+    width: scale(155),
     backgroundColor: Colors.bg,
     borderRadius: moderateScale(8),
     overflow: 'hidden',
-    marginRight: horizontalScale(20),
+    marginRight: scale(20),
     marginTop: verticalScale(20),
   },
   imageContainer: {

@@ -1,10 +1,6 @@
 import { Animated, Image, StyleSheet, View } from 'react-native';
 import React from 'react';
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '../../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../../utils/scaling';
 
 const ImageCmp = ({
   source,
@@ -20,14 +16,14 @@ const ImageCmp = ({
   const imageHeight = isAnimatedValue
     ? size
     : size
-    ? horizontalScale(size)
+    ? scale(size)
     : verticalScale(height ?? 100);
 
   const imageWidth = isAnimatedValue
     ? size
     : size
-    ? horizontalScale(size)
-    : horizontalScale(width ?? 100);
+    ? scale(size)
+    : scale(width ?? 100);
 
   const normalizedSource =
     source && typeof source === 'string'
@@ -41,7 +37,7 @@ const ImageCmp = ({
       style={{
         height: imageHeight,
         width: imageWidth,
-        borderRadius: moderateScale(borderRadius),
+        borderRadius: size ? scale(borderRadius) : moderateScale(borderRadius),
         overflow: 'hidden',
         backgroundColor: bgColor,
       }}

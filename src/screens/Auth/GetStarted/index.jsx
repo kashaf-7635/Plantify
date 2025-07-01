@@ -4,7 +4,11 @@ import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
-import { moderateScale, verticalScale } from '../../../utils/scaling';
+import {
+  scale,
+  moderateScale,
+  verticalScale,
+} from '../../../utils/scaling';
 
 const GetStarted = ({ navigation }) => {
   const handleLoginClick = () => {
@@ -16,6 +20,7 @@ const GetStarted = ({ navigation }) => {
         <ImageBackground
           source={require('../../../assets/images/bg_getStarted.png')}
           style={{ flex: 3 }}
+          resizeMode='contain'
         ></ImageBackground>
         <View style={s.content}>
           <Philosopher size={42} align="right">

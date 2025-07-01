@@ -9,7 +9,7 @@ import React from 'react';
 import Error from '../Error';
 import Philosopher from '../Styled/TextCmp/Philosopher';
 import SquareCard from '../ProductCard/SquareCard';
-import { horizontalScale, verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import Colors from '../../utils/colors';
 import Poppins from '../Styled/TextCmp/Poppins';
 
@@ -54,7 +54,7 @@ export default ProductList;
 
 const s = StyleSheet.create({
   listSection: {
-    paddingHorizontal: horizontalScale(20),
+    paddingHorizontal: scale(20),
     paddingVertical: verticalScale(30),
   },
   seeMore: {

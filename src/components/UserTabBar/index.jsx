@@ -4,9 +4,8 @@ import { View, Platform, StyleSheet } from 'react-native';
 import { useLinkBuilder, useTheme } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
 import Feather from '@react-native-vector-icons/feather';
-import Entypo from '@react-native-vector-icons/entypo';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import Colors from '../../utils/colors';
 
 export default function UserTabBar({ state, descriptors, navigation }) {
@@ -65,7 +64,7 @@ export default function UserTabBar({ state, descriptors, navigation }) {
           >
             <Feather
               name={getIconName(route.name, isFocused)}
-              size={25}
+              size={moderateScale(25)}
               color={isFocused ? Colors.primary800 : Colors.textDark}
             />
             {isFocused && <View style={styles.dot} />}

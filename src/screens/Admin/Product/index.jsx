@@ -9,7 +9,7 @@ import ImageCmp from '../../../components/Styled/ImageCmp';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import {
-  horizontalScale,
+  scale,
   moderateScale,
   verticalScale,
 } from '../../../utils/scaling';
@@ -142,7 +142,7 @@ const s = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    gap: horizontalScale(30),
+    gap: scale(30),
     marginTop: verticalScale(20),
   },
 });

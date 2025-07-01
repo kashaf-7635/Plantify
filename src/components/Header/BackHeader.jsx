@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import Poppins from '../Styled/TextCmp/Poppins';
 import Entypo from '@react-native-vector-icons/entypo';
-import { horizontalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import { useNavigation } from '@react-navigation/native';
 
 const BackHeader = ({ title }) => {
@@ -10,7 +10,7 @@ const BackHeader = ({ title }) => {
   return (
     <View style={s.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Entypo name="chevron-thin-left" size={20} />
+        <Entypo name="chevron-thin-left" size={moderateScale(20)} />
       </TouchableOpacity>
 
       <View style={s.titleView}>
@@ -27,7 +27,7 @@ export default BackHeader;
 const s = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: horizontalScale(20),
+    paddingHorizontal: scale(20),
   },
   titleView: {
     flex: 1,

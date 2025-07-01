@@ -11,7 +11,11 @@ import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
-import { moderateScale, verticalScale } from '../../../utils/scaling';
+import {
+  scale,
+  moderateScale,
+  verticalScale,
+} from '../../../utils/scaling';
 import { Formik } from 'formik';
 import OutlinedInput from '../../../components/InputCmp/OutlinedInput';
 import { useLoginUserMutation } from '../../../services/userApi';

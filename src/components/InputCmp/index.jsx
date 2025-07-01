@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import Poppins from '../Styled/TextCmp/Poppins';
 import Colors from '../../utils/colors';
-import { horizontalScale, verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 
 const InputCmp = ({
   label,
@@ -50,8 +50,8 @@ const s = StyleSheet.create({
     width: '100%',
   },
   input: {
-    borderRadius: horizontalScale(10),
-    paddingHorizontal: horizontalScale(12),
+    borderRadius: scale(10),
+    paddingHorizontal: scale(12),
     paddingVertical: verticalScale(12),
     fontSize: verticalScale(14),
     color: Colors.primary800,

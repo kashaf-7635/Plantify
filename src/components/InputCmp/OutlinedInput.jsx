@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React from 'react';
 import Colors from '../../utils/colors';
-import { moderateScale, verticalScale } from '../../utils/scaling';
 import Fonts from '../../utils/fonts';
+import { moderateScale, verticalScale } from '../../utils/scaling';
 
 const OutlinedInput = ({
   placeholder,

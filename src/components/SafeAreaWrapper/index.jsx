@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { horizontalScale, verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 
 const SafeAreaWrapper = ({ children }) => {
   const insets = useSafeAreaInsets();
@@ -10,8 +10,8 @@ const SafeAreaWrapper = ({ children }) => {
       style={{
         flex: 1,
         paddingTop: verticalScale(insets.top),
-        paddingLeft: horizontalScale(insets.left),
-        paddingRight: horizontalScale(insets.right),
+        paddingLeft: scale(insets.left),
+        paddingRight: scale(insets.right),
         backgroundColor: '#FFF',
       }}
     >

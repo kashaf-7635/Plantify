@@ -3,8 +3,10 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Philosopher from '../Styled/TextCmp/Philosopher';
 import FontAwesome from '@react-native-vector-icons/fontawesome';
+import AntDesign from '@react-native-vector-icons/ant-design';
 import Colors from '../../utils/colors';
-import { horizontalScale, verticalScale } from '../../utils/scaling';
+import { scale, verticalScale, moderateScale } from '../../utils/scaling';
+import { handleLogout } from '../../screens/User/Profile';
 
 const AdminHeader = ({ title }) => {
   const navigation = useNavigation();
@@ -16,12 +18,14 @@ const AdminHeader = ({ title }) => {
         </Philosopher>
       </View>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('AddProduct')}
-        style={s.icon}
-      >
-        <FontAwesome name="plus" color={'#FFF'} size={30} />
-      </TouchableOpacity>
+      <View style={s.icon}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddProduct')}>
+          <FontAwesome name="plus" color={'#FFF'} size={moderateScale(30)} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogout}>
+          <AntDesign name="logout" color={'#FFF'} size={moderateScale(30)} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -34,13 +38,12 @@ const s = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.primary800,
     paddingVertical: verticalScale(10),
-    paddingHorizontal: horizontalScale(20),
+    paddingHorizontal: scale(20),
+    justifyContent: 'space-between',
   },
-  title: {
-    flex: 0.9,
-  },
+  title: {},
   icon: {
-    flex: 0.1,
-    alignItems: 'flex-end',
+    gap: scale(10),
+    flexDirection: 'row',
   },
 });

@@ -7,12 +7,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import Poppins from '../../Styled/TextCmp/Poppins';
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '../../../utils/scaling';
 import Colors from '../../../utils/colors';
+import { moderateScale, scale, verticalScale } from '../../../utils/scaling';
 
 const ButtonCmp = ({ children, isLoading, onPress, variant }) => {
   return (
@@ -51,7 +47,7 @@ export default ButtonCmp;
 const s = StyleSheet.create({
   btn: {
     height: verticalScale(50),
-    width: horizontalScale(279),
+    width: scale(279),
     borderRadius: moderateScale(8),
     justifyContent: 'center',
     alignItems: 'center',

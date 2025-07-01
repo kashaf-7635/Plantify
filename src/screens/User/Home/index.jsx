@@ -11,7 +11,7 @@ import React from 'react';
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
 import {
-  horizontalScale,
+  scale,
   moderateScale,
   verticalScale,
 } from '../../../utils/scaling';
@@ -61,7 +61,7 @@ const HomeScreen = () => {
                   s.row,
                   {
                     marginTop: verticalScale(15),
-                    gap: horizontalScale(10),
+                    gap: scale(10),
                     alignItems: 'center',
                   },
                 ]}
@@ -72,7 +72,7 @@ const HomeScreen = () => {
                 <AntDesign
                   name="arrow-right"
                   color={Colors.primary800}
-                  size={20}
+                  size={moderateScale(20)}
                 />
               </View>
             </View>
@@ -81,7 +81,7 @@ const HomeScreen = () => {
                 <Feather
                   name="shopping-cart"
                   color={Colors.textDark}
-                  size={25}
+                  size={moderateScale(25)}
                 />
               </View>
             </View>
@@ -141,8 +141,8 @@ const s = StyleSheet.create({
   },
   circle: {
     backgroundColor: 'white',
-    height: horizontalScale(46),
-    width: horizontalScale(48),
+    height: scale(46),
+    width: scale(48),
     borderRadius: moderateScale(25),
     justifyContent: 'center',
     alignItems: 'center',
@@ -170,13 +170,13 @@ const s = StyleSheet.create({
     height: verticalScale(134),
     backgroundColor: Colors.bg,
     borderRadius: moderateScale(8),
-    marginHorizontal: horizontalScale(20),
+    marginHorizontal: scale(20),
     marginVertical: verticalScale(10),
     overflow: 'hidden',
   },
   kitText: {
     flex: 2,
     justifyContent: 'center',
-    paddingHorizontal: horizontalScale(20),
+    paddingHorizontal: scale(20),
   },
 });
