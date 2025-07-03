@@ -12,8 +12,10 @@ import SquareCard from '../ProductCard/SquareCard';
 import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import Colors from '../../utils/colors';
 import Poppins from '../Styled/TextCmp/Poppins';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductList = ({ title, products, isSuccess }) => {
+  const navigation = useNavigation();
   return (
     <View style={s.listSection}>
       {isSuccess && products.length !== 0 ? (
@@ -28,7 +30,10 @@ const ProductList = ({ title, products, isSuccess }) => {
           }
           ListFooterComponent={
             <>
-              <TouchableOpacity style={s.seeMore}>
+              <TouchableOpacity
+                style={s.seeMore}
+                onPress={() => navigation.navigate('ProductListing')}
+              >
                 <Poppins weight="semibold" size={16} color={Colors.textDark}>
                   See More
                 </Poppins>

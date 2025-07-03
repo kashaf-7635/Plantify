@@ -2,10 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import Poppins from '../Styled/TextCmp/Poppins';
 import Entypo from '@react-native-vector-icons/entypo';
+import Feather from '@react-native-vector-icons/feather';
 import { scale, verticalScale, moderateScale } from '../../utils/scaling';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../../utils/colors';
 
-const BackHeader = ({ title }) => {
+const BackHeader = ({ title, cartIcon }) => {
   const navigation = useNavigation();
   return (
     <View style={s.container}>
@@ -18,6 +20,15 @@ const BackHeader = ({ title }) => {
           {title}
         </Poppins>
       </View>
+      {cartIcon && (
+        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+          <Feather
+            name="shopping-cart"
+            color={Colors.textDark}
+            size={moderateScale(25)}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -27,6 +38,7 @@ export default BackHeader;
 const s = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: scale(20),
   },
   titleView: {

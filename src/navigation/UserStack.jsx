@@ -8,6 +8,8 @@ import ProfileScreen from '../screens/User/Profile';
 import UserTabBar from '../components/UserTabBar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetails from '../screens/User/ProductDetails';
+import ProductListing from '../screens/User/ProductListing';
+import Cart from '../screens/User/Cart';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,6 +39,8 @@ const UserStack = () => {
     >
       <Stack.Screen name="UserTab" component={UserTab} options={{}} />
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
+      <Stack.Screen name="ProductListing" component={ProductListing} />
+      <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
   );
 };

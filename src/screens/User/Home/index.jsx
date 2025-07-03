@@ -10,11 +10,7 @@ import {
 import React from 'react';
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import Philosopher from '../../../components/Styled/TextCmp/Philosopher';
-import {
-  scale,
-  moderateScale,
-  verticalScale,
-} from '../../../utils/scaling';
+import { scale, moderateScale, verticalScale } from '../../../utils/scaling';
 import Colors from '../../../utils/colors';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import AntDesign from '@react-native-vector-icons/ant-design';
@@ -28,7 +24,7 @@ import { STATUSES } from '../../../store/statuses';
 import ProductList from '../../../components/ProductList';
 
 const HomeScreen = () => {
-  const {} = useProductsQuery();
+  const {  } = useProductsQuery();
   const {
     data: products,
     status,

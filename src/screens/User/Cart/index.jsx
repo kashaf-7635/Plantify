@@ -2,15 +2,14 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import SafeAreaWrapper from '../../../components/SafeAreaWrapper';
 import BackHeader from '../../../components/Header/BackHeader';
-import NotificationCard from '../../../components/ProductCard/Notification';
+import { scale, verticalScale } from '../../../utils/scaling';
 import { useSelector } from 'react-redux';
-import Error from '../../../components/Error';
 import { STATUSES } from '../../../store/statuses';
 import Loading from '../../../components/Loading';
-import { scale, verticalScale } from '../../../utils/scaling';
 import Poppins from '../../../components/Styled/TextCmp/Poppins';
+import CartCard from '../../../components/ProductCard/Cart';
 
-const NotificationScreen = ({}) => {
+const Cart = () => {
   const {
     data: products,
     status,
@@ -27,7 +26,7 @@ const NotificationScreen = ({}) => {
   }
   return (
     <SafeAreaWrapper>
-      <BackHeader title={'NOTIFICATION'} />
+      <BackHeader title={'CART'} />
 
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -38,11 +37,11 @@ const NotificationScreen = ({}) => {
         data={products}
         keyExtractor={(item, index) => item + index}
         renderItem={({ item, index }) => {
-          return <NotificationCard product={item} />;
+          return <CartCard product={item} />;
         }}
         ListEmptyComponent={
           <View style={s.empty}>
-            <Poppins>You don’t have any notification</Poppins>
+            <Poppins>Your cart is currently empty.</Poppins>
           </View>
         }
       />
@@ -50,11 +49,10 @@ const NotificationScreen = ({}) => {
   );
 };
 
-export default NotificationScreen;
+export default Cart;
 
 const s = StyleSheet.create({
   empty: {
-    // flex: 1,
     alignItems: 'center',
   },
 });

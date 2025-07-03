@@ -6,6 +6,8 @@ import Colors from '../../utils/colors';
 import { useNavigation } from '@react-navigation/native';
 
 const SquareCard = ({ product }) => {
+
+  
   const navigation = useNavigation();
   return (
     <TouchableOpacity

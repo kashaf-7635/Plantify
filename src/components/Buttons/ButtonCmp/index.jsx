@@ -10,7 +10,7 @@ import Poppins from '../../Styled/TextCmp/Poppins';
 import Colors from '../../../utils/colors';
 import { moderateScale, scale, verticalScale } from '../../../utils/scaling';
 
-const ButtonCmp = ({ children, isLoading, onPress, variant }) => {
+const ButtonCmp = ({ children, isLoading, onPress, variant, disabled }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -23,7 +23,7 @@ const ButtonCmp = ({ children, isLoading, onPress, variant }) => {
             }
           : variant === 'filled'
           ? {
-              backgroundColor: Colors.primary800,
+              backgroundColor: disabled ? '#ABABAB' : Colors.primary800,
             }
           : {},
       ]}
