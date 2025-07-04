@@ -1,14 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
-import Poppins from '../Styled/TextCmp/Poppins';
-import Entypo from '@react-native-vector-icons/entypo';
-import Feather from '@react-native-vector-icons/feather';
-import { scale, verticalScale, moderateScale } from '../../utils/scaling';
-import { useNavigation } from '@react-navigation/native';
-import Colors from '../../utils/colors';
-
-const BackHeader = ({ title, cartIcon }) => {
+const BackHeader = ({ title, cartIcon, onDeleteAll }) => {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const isCartScreen = route.name === 'Cart';
+
   return (
     <View style={s.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -20,10 +15,13 @@ const BackHeader = ({ title, cartIcon }) => {
           {title}
         </Poppins>
       </View>
+
       {cartIcon && (
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+        <TouchableOpacity
+          onPress={() => isCartScreen ? onDeleteAll?.() : navigation.navigate('Cart')}
+        >
           <Feather
-            name="shopping-cart"
+            name={isCartScreen ? 'trash-2' : 'shopping-cart'}
             color={Colors.textDark}
             size={moderateScale(25)}
           />
@@ -32,17 +30,3 @@ const BackHeader = ({ title, cartIcon }) => {
     </View>
   );
 };
-
-export default BackHeader;
-
-const s = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: scale(20),
-  },
-  titleView: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});

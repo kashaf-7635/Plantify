@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
@@ -23,8 +24,8 @@ import Loading from '../../../components/Loading';
 import { STATUSES } from '../../../store/statuses';
 import ProductList from '../../../components/ProductList';
 
-const HomeScreen = () => {
-  const {  } = useProductsQuery();
+const HomeScreen = ({navigation}) => {
+  const { } = useProductsQuery();
   const {
     data: products,
     status,
@@ -73,13 +74,13 @@ const HomeScreen = () => {
               </View>
             </View>
             <View style={s.right}>
-              <View style={s.circle}>
+              <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={s.circle}>
                 <Feather
                   name="shopping-cart"
                   color={Colors.textDark}
                   size={moderateScale(25)}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={s.imageContainer}>

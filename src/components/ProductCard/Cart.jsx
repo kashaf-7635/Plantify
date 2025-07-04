@@ -1,26 +1,31 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useReducer } from 'react';
+import { StyleSheet, TouchableOpacity, View, } from 'react-native';
+import React, { useReducer, useState } from 'react';
 import ImageCmp from '../Styled/ImageCmp';
 import Poppins from '../Styled/TextCmp/Poppins';
 import { moderateScale, scale, verticalScale } from '../../utils/scaling';
 import AntDesign from '@react-native-vector-icons/ant-design';
 import Colors from '../../utils/colors';
+import CheckBox from '@react-native-community/checkbox';
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: Math.max(1, state.count - 1) };
-    default:
-      return state;
-  }
-}
-const CartCard = ({ product }) => {
-  const [state, dispatch] = useReducer(reducer, { count: 1 });
+
+const CartCard = ({ product, isSelected, count, onToggle, onCountChange }) => {
+
+
+  const increment = () => onCountChange(count + 1);
+  const decrement = () => onCountChange(Math.max(1, count - 1));
+
+
 
   return (
-    <View style={{ marginVertical: verticalScale(10) }}>
+    <View style={{ marginVertical: verticalScale(10), flexDirection: 'row', alignItems: 'center', gap: scale(10) }}>
+
+      <CheckBox
+        tintColors={{ true: '#000', false: '#000' }}
+        disabled={false}
+        value={isSelected}
+        onValueChange={onToggle}
+      />
+
       <View style={s.main}>
         <View style={s.imageView}>
           <ImageCmp
@@ -35,7 +40,7 @@ const CartCard = ({ product }) => {
             {product?.name} | {product?.category}
           </Poppins>
           <Poppins color={Colors.primary800} size={16} weight="semibold">
-            $ {product?.price}
+            $ {product?.price * count}
           </Poppins>
           <View
             style={{
@@ -47,7 +52,7 @@ const CartCard = ({ product }) => {
             <View style={s.row}>
               <TouchableOpacity
                 style={s.box}
-                onPress={() => dispatch({ type: 'increment' })}
+                onPress={increment}
               >
                 <AntDesign
                   name="plus"
@@ -57,12 +62,12 @@ const CartCard = ({ product }) => {
               </TouchableOpacity>
               <View>
                 <Poppins color="#000" size={16}>
-                  {state.count}
+                  {count}
                 </Poppins>
               </View>
               <TouchableOpacity
                 style={s.box}
-                onPress={() => dispatch({ type: 'decrement' })}
+                onPress={decrement}
               >
                 <AntDesign
                   name="minus"
@@ -93,15 +98,17 @@ const s = StyleSheet.create({
   main: {
     flexDirection: 'row',
     marginVertical: verticalScale(5),
+    alignItems: 'center',
+    flex: 1,
   },
   imageView: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   textView: {
-    flex: 1,
     justifyContent: 'center',
     paddingHorizontal: scale(20),
+    width: scale(199),
   },
 
   row: {
@@ -119,4 +126,5 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
 });
