@@ -5,12 +5,12 @@ import Poppins from '../Styled/TextCmp/Poppins';
 import ButtonCmp from '../Buttons/ButtonCmp';
 import { verticalScale } from '../../utils/scaling';
 
-const DeleteAllCartItems = forwardRef((props, ref) => {
+const DeleteCartItem = forwardRef((props, ref) => {
     return (
         <BottomSheet ref={ref}>
             <View>
                 <View style={{ marginBottom: verticalScale(10) }}>
-                    <Poppins color="#252A31" align="center" size={16} weight='semibold'>Empty Cart?</Poppins>
+                    <Poppins color="#252A31" align="center" size={16} weight='semibold'>Delete this Item from Cart?</Poppins>
                     <Poppins color="#7D7B7B" align="center">This cannot be undone</Poppins>
                 </View>
 
@@ -21,6 +21,6 @@ const DeleteAllCartItems = forwardRef((props, ref) => {
     );
 });
 
-export default DeleteAllCartItems;
+export default DeleteCartItem;
 
 const s = StyleSheet.create({});

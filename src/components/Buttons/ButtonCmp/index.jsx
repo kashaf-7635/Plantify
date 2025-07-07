@@ -51,6 +51,5 @@ const s = StyleSheet.create({
     borderRadius: moderateScale(8),
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: verticalScale(10),
   },
 });

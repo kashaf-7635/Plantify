@@ -1,15 +1,16 @@
 import { StyleSheet, TouchableOpacity, View, } from 'react-native';
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import ImageCmp from '../Styled/ImageCmp';
 import Poppins from '../Styled/TextCmp/Poppins';
 import { moderateScale, scale, verticalScale } from '../../utils/scaling';
 import AntDesign from '@react-native-vector-icons/ant-design';
 import Colors from '../../utils/colors';
 import CheckBox from '@react-native-community/checkbox';
+import DeleteCartItem from '../BottomSheets/DeleteCartItem';
 
 
 const CartCard = ({ product, isSelected, count, onToggle, onCountChange }) => {
-
+  const refDeleteItem = useRef();
 
   const increment = () => onCountChange(count + 1);
   const decrement = () => onCountChange(Math.max(1, count - 1));
@@ -77,17 +78,20 @@ const CartCard = ({ product, isSelected, count, onToggle, onCountChange }) => {
               </TouchableOpacity>
             </View>
 
-            <View
+            <TouchableOpacity
+              onPress={() => refDeleteItem.current.open()}
               style={{
                 borderBottomColor: Colors.textDark,
                 borderBottomWidth: 1,
               }}
             >
               <Poppins>Remove</Poppins>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
+
+      <DeleteCartItem ref={refDeleteItem} />
     </View>
   );
 };

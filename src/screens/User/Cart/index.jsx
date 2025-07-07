@@ -10,9 +10,10 @@ import Poppins from '../../../components/Styled/TextCmp/Poppins';
 import CartCard from '../../../components/ProductCard/Cart';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
 import Entypo from '@react-native-vector-icons/entypo'
+import Error from '../../../components/Error';
 
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
   const {
     data: products,
     status,
@@ -21,7 +22,7 @@ const Cart = () => {
   const [selectedItems, setSelectedItems] = useState({});
   const [itemCounts, setItemCounts] = useState({});
 
-  const refDeleteAll = useRef();
+
   const handleToggle = (productId) => {
     setSelectedItems(prev => ({
       ...prev,
@@ -55,7 +56,7 @@ const Cart = () => {
   }
   return (
     <SafeAreaWrapper>
-      <BackHeader title={'CART'} cartIcon={true} />
+      <BackHeader title={'CART'} cartIcon={true} onDeleteAll={() => refDeleteAll.current.open()} />
 
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -87,7 +88,7 @@ const Cart = () => {
             <Poppins size={16} color='#000'>$ {subtotal.toFixed(2)}</Poppins>
           </View>
 
-          <ButtonCmp variant={'filled'}>
+          <ButtonCmp variant={'filled'} onPress={() => navigation.navigate('Checkout')}>
             <View style={s.btnInner}>
               <Poppins color='white' size={16}>Proceed to Checkout</Poppins>
               <Entypo name='chevron-small-right' size={30} color={'white'} />
@@ -96,7 +97,8 @@ const Cart = () => {
           </ButtonCmp>
         </View>
       }
-      <DeleteAllCartItems ref={refDeleteAll} />
+
+
     </SafeAreaWrapper>
   );
 };

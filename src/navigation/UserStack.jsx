@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetails from '../screens/User/ProductDetails';
 import ProductListing from '../screens/User/ProductListing';
 import Cart from '../screens/User/Cart';
+import Checkout from '../screens/User/Checkout';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,10 +42,11 @@ const UserStack = () => {
       <Stack.Screen name="ProductDetails" component={ProductDetails} />
       <Stack.Screen name="ProductListing" component={ProductListing} />
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Checkout" component={Checkout} />
     </Stack.Navigator>
   );
 };
 
 export default UserStack;
 
-const styles = StyleSheet.create({});
+const s = StyleSheet.create({});
