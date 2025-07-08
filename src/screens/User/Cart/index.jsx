@@ -88,7 +88,7 @@ const Cart = ({ navigation }) => {
             <Poppins size={16} color='#000'>$ {subtotal.toFixed(2)}</Poppins>
           </View>
 
-          <ButtonCmp variant={'filled'} onPress={() => navigation.navigate('Checkout')}>
+          <ButtonCmp variant={'filled'} onPress={() => navigation.navigate('Checkout', { subtotal: subtotal.toFixed(2) })}>
             <View style={s.btnInner}>
               <Poppins color='white' size={16}>Proceed to Checkout</Poppins>
               <Entypo name='chevron-small-right' size={30} color={'white'} />

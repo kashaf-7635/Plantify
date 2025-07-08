@@ -37,7 +37,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         borderBottomColor: '#ABABAB',
         borderBottomWidth: 2,
-        marginVertical: verticalScale(10),
+        marginTop: verticalScale(10),
         height: verticalScale(33),
     },
     inputView: {
