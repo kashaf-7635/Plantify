@@ -11,9 +11,24 @@ import ProductDetails from '../screens/User/ProductDetails';
 import ProductListing from '../screens/User/ProductListing';
 import Cart from '../screens/User/Cart';
 import Checkout from '../screens/User/Checkout';
+import EditInformation from '../screens/User/Profile/EditInformation';
+import PlantingGuide from '../screens/User/Profile/PlantingGuide';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="EditInformation" component={EditInformation} />
+      <Tab.Screen name="PlantingGuide" component={PlantingGuide} />
+    </Stack.Navigator>
+  );
+};
 
 const UserTab = () => {
   return (
@@ -26,7 +41,7 @@ const UserTab = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Notification" component={NotificationScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="ProfileStack" component={ProfileStack} />
     </Tab.Navigator>
   );
 };

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, Pressable } from 'react-native';
 import React from 'react';
 import Colors from '../../utils/colors';
 import Fonts from '../../utils/fonts';
@@ -10,27 +10,32 @@ const CheckoutInput = ({
     onBlur,
     value,
     iconCmp,
+    textColor,
+    onPressIn,
+    editable = true,
     ...rest
 }) => {
     return (
         <View style={s.container}>
-            <View style={s.inputView}>
+            <Pressable style={s.inputView} onPressIn={onPressIn}>
                 <TextInput
                     placeholderTextColor={'#7D7B7B'}
-                    style={s.input}
+                    style={[s.input, textColor && { color: textColor }]}
                     placeholder={placeholder}
                     onChangeText={onChangeText}
                     onBlur={onBlur}
                     value={value}
+                    editable={editable}
                     {...rest}
                 />
-            </View>
+            </Pressable>
             {iconCmp && <View style={s.icon}>{iconCmp}</View>}
         </View>
     );
 };
 
 export default CheckoutInput;
+
 
 const s = StyleSheet.create({
     container: {

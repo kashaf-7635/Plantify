@@ -19,7 +19,7 @@ export default function UserTabBar({ state, descriptors, navigation }) {
         return 'search';
       case 'Notification':
         return 'bell';
-      case 'Profile':
+      case 'ProfileStack':
         return 'user';
       default:
         return 'questioncircleo';

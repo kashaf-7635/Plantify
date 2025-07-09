@@ -16,13 +16,15 @@ import CheckoutInput from '../../../components/InputCmp/CheckoutInput';
 import Colors from '../../../utils/colors';
 import ButtonCmp from '../../../components/Buttons/ButtonCmp';
 import CheckoutSchema from '../../../schema/CheckoutSchema';
+import ConfirmCheckout from '../../../components/BottomSheets/ConfirmCheckout';
 
 const Checkout = ({ route }) => {
     const formikRef = useRef();
+    const checkoutSheetRef = useRef();
     const [isEdit, setIsEdit] = useState(true);
     const subtotal = Number(route?.params?.subtotal) || 0;
     const [deliveryMethod, setDeliveryMethod] = useState(null);
-    const handleCheckout = async values => {
+    const handleCheckout = async (values) => {
         setIsEdit(false);
 
         if (formikRef.current) {
@@ -32,13 +34,20 @@ const Checkout = ({ route }) => {
                 expiry: true,
                 cvc: true,
             });
-            await formikRef.current.validateForm();
-        }
 
-        console.log(values);
+            const errors = await formikRef.current.validateForm();
+
+
+            if (Object.keys(errors).length === 0 && !isEdit) {
+                console.log(values);
+                if (checkoutSheetRef?.current?.open) {
+                    checkoutSheetRef.current.open();
+                }
+            }
+        }
     };
 
-    let totalAmount = (subtotal + (deliveryMethod?.amount || 0)).toFixed(2);
+
 
     const deliveryMethods = [
         {
@@ -83,7 +92,9 @@ const Checkout = ({ route }) => {
                         pin: '',
                         cardName: '',
                         expiry: '',
-                        cvc: ''
+                        cvc: '',
+                        payment: '',
+                        totalAmount: subtotal,
                     }}
                     onSubmit={handleCheckout}
                     innerRef={formikRef}
@@ -164,6 +175,7 @@ const Checkout = ({ route }) => {
                                                 <TouchableOpacity
                                                     onPress={() => {
                                                         setFieldValue('deliveryMethod', item.id);
+                                                        setFieldValue('totalAmount', subtotal + item.amount)
                                                         setDeliveryMethod(item);
                                                     }}
                                                     key={item.id}
@@ -358,7 +370,7 @@ const Checkout = ({ route }) => {
                                     <Poppins color="#000" opacity={0.6}>
                                         Total
                                     </Poppins>
-                                    <Poppins color={Colors.primary800}>$ {totalAmount}</Poppins>
+                                    <Poppins color={Colors.primary800}>$ {values.totalAmount}</Poppins>
                                 </View>
                                 <View
                                     style={{
@@ -382,7 +394,10 @@ const Checkout = ({ route }) => {
                         </>
                     )}
                 </Formik>
+                <ConfirmCheckout ref={checkoutSheetRef} />
             </SafeAreaWrapper>
+
+
         </>
     );
 };
