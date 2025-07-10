@@ -10,7 +10,7 @@ const NotificationCard = ({ product }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{ marginVertical: verticalScale(10) }}>
+    <TouchableOpacity onPress={()=>navigation.navigate('NotificationDetails')} style={{ marginVertical: verticalScale(10) }}>
       <View style={{ borderBottomColor: '#7D7B7B', borderBottomWidth: 1 }}>
         <Poppins size={16}>Wednesday, April 30th</Poppins>
       </View>
@@ -34,7 +34,7 @@ const NotificationCard = ({ product }) => {
           <Poppins color="#000">2 items</Poppins>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

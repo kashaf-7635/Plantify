@@ -17,7 +17,7 @@ export default function UserTabBar({ state, descriptors, navigation }) {
         return 'home';
       case 'Search':
         return 'search';
-      case 'Notification':
+      case 'NotificationStack':
         return 'bell';
       case 'ProfileStack':
         return 'user';

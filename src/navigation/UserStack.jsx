@@ -13,6 +13,9 @@ import Cart from '../screens/User/Cart';
 import Checkout from '../screens/User/Checkout';
 import EditInformation from '../screens/User/Profile/EditInformation';
 import PlantingGuide from '../screens/User/Profile/PlantingGuide';
+import PlantingGuideDetails from '../screens/User/Profile/PlantingGuideDetails';
+import Faqs from '../screens/User/Profile/Faqs';
+import NotificationDetails from '../screens/User/Notification/NotificationDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,6 +29,23 @@ const ProfileStack = () => {
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="EditInformation" component={EditInformation} />
       <Tab.Screen name="PlantingGuide" component={PlantingGuide} />
+      <Tab.Screen
+        name="PlantingGuideDetails"
+        component={PlantingGuideDetails}
+      />
+      <Tab.Screen name="Faqs" component={Faqs} />
+    </Stack.Navigator>
+  );
+};
+const NotificationStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
+    >
+      <Stack.Screen name="Notification" component={NotificationScreen} />
+      <Stack.Screen name="NotificationDetails" component={NotificationDetails} />
     </Stack.Navigator>
   );
 };
@@ -40,7 +60,7 @@ const UserTab = () => {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Notification" component={NotificationScreen} />
+      <Tab.Screen name="NotificationStack" component={NotificationStack} />
       <Tab.Screen name="ProfileStack" component={ProfileStack} />
     </Tab.Navigator>
   );

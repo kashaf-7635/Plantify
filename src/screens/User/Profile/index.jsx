@@ -30,7 +30,7 @@ const ProfileScreen = ({ navigation }) => {
         { label: 'Edit Information', onPress: () => navigation.navigate('EditInformation') },
         { label: 'Planting Guide', onPress: () => navigation.navigate('PlantingGuide') },
         { label: 'Transaction History' },
-        { label: ' Q & A' },
+        { label: ' Q & A', onPress: () => navigation.navigate('Faqs') },
       ],
     },
     {
